@@ -1,17 +1,17 @@
 [
   {
-    "cText": "Music Near Me",
+    "comment_text": "Music Near Me",
     "user_id": 1,
     "post_id": 2
   },
   {
-    "cText": "The Ultimate Tech Quiz",
+    "comment_text": "The Ultimate Tech Quiz",
     "user_id": 2,
-    "post_id": 3
+    "post_id": 2
   },
   {
-    "cText": "Roll 'Em Up",
+    "comment_text": "Roll 'Em Up",
     "user_id": 3,
-    "post_id": 1
+    "post_id": 3
   }
 ]
