@@ -1,0 +1,17 @@
+[
+  {
+    "cText": "Music Near Me",
+    "user_id": 1,
+    "post_id": 2
+  },
+  {
+    "cText": "The Ultimate Tech Quiz",
+    "user_id": 2,
+    "post_id": 3
+  },
+  {
+    "cText": "Roll 'Em Up",
+    "user_id": 3,
+    "post_id": 1
+  }
+]
