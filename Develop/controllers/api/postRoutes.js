@@ -1,19 +1,26 @@
 const router = require('express').Router();
 const { Post, Comment, User } = require('../../models');
+const sequelize = require('../../config/connection');
+const session = require('express-session');
 
 router.get('/', async (req, res) => {
   try {
     const PostData = await Post.findAll({
-      attributes: ['id', 'title', 'post_text', 'user_id'],
-      include: [{ model: User,
-        attributes: ['name']
-      }],
-      include: [{ model: Comment,
-        attributes: ['id', 'comment_text', 'post_id'],
-        include: [{ model: User,
+      attributes: ['id', 'title', 'post_text'],
+      include: [
+        {
+          model: User,
           attributes: ['name']
-        }],
-      }]
+        },
+        { 
+          model: Comment,
+          attributes: ['id', 'comment_text', 'post_id'],
+          include: { 
+              model: User,
+              attributes: ['name']
+          }
+        }
+      ]
     });
 
     res.status(200).json(PostData);
@@ -27,17 +34,23 @@ router.get('/:id', async (req, res) => {
     const PostData = await Post.findOne({
       where: {id: req.params.id},
       attributes: ['id', 'title', 'post_text'],
-      include: [{ model: User,
-        attributes: ['name']
-      }],
-      include: [{ model: Comment,
-        attributes: ['id', 'comment_text', 'post_id'],
-        include: [{ model: User,
+      include: [
+        {
+          model: User,
           attributes: ['name']
-        }],
-      }]
+        },
+        { 
+          model: Comment,
+          attributes: ['id', 'comment_text', 'post_id'],
+          include: { 
+              model: User,
+              attributes: ['name']
+          }
+        }
+      ]
     });
-
+    const posts = PostData.get({ plain: true });
+    res.render('homepage', { posts, logged_in: req.session.logged_in });
     if (!PostData) {
       res.status(404).json({ message: 'No Post found with this id!' });
       return;

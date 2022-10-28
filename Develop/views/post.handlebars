@@ -1,0 +1,27 @@
+<div class="text-center">
+  <h2>{{post.title}}</h2>
+  <div>
+    <p>Created by {{user.name}} on {{date_created}}</p>
+  </div>
+  <div>
+    <p>{{post_text}}</p>
+  </div>
+</div>
+{{#if logged_in}}
+<form class="commentForm", data-postid={{id}}>
+  <div>
+    <textarea id="comment_text", placeholder="Thoughts?"></textarea>
+  </div>
+  <div>
+    <button class="button btn btn-success" type="submit">Post Comment</button>
+  </div>
+</form>
+{{/if}}
+<h3>Comments</h3>
+{{#each comments as |comment|}}
+<div>
+  <p>{{comment.comment_text}}</p>
+  <p>Created by {{comment.user.name}} on {{format_date date_created}}</p>
+</div>
+{{/each}}
+<script src="./js/comment.js"></script>
