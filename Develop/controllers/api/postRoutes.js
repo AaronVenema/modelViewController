@@ -6,18 +6,18 @@ const session = require('express-session');
 router.get('/', async (req, res) => {
   try {
     const PostData = await Post.findAll({
-      attributes: ['id', 'title', 'post_text'],
+      attributes: ['id', 'title', 'post_text', 'updated_at'],
       include: [
         {
           model: User,
           attributes: ['name']
         },
-        { 
+        {
           model: Comment,
-          attributes: ['id', 'comment_text', 'post_id'],
-          include: { 
-              model: User,
-              attributes: ['name']
+          attributes: ['id', 'comment_text', 'post_id', 'updated_at'],
+          include: {
+            model: User,
+            attributes: ['name']
           }
         }
       ]
@@ -32,19 +32,19 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const PostData = await Post.findOne({
-      where: {id: req.params.id},
-      attributes: ['id', 'title', 'post_text'],
+      where: { id: req.params.id },
+      attributes: ['id', 'title', 'post_text', 'updated_at'],
       include: [
         {
           model: User,
           attributes: ['name']
         },
-        { 
+        {
           model: Comment,
-          attributes: ['id', 'comment_text', 'post_id'],
-          include: { 
-              model: User,
-              attributes: ['name']
+          attributes: ['id', 'comment_text', 'post_id', 'updated_at'],
+          include: {
+            model: User,
+            attributes: ['name']
           }
         }
       ]
@@ -77,9 +77,9 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res)=>{
+router.put('/:id', async (req, res) => {
   try {
-    const PostData = await Post.update(req.body,{
+    const PostData = await Post.update(req.body, {
       where: {
         id: req.params.id,
       }
@@ -94,7 +94,7 @@ router.put('/:id', async (req, res)=>{
     res.status(500).json(err);
   }
 });
-  
+
 
 router.delete('/:id', async (req, res) => {
   try {

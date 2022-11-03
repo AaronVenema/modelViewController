@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const CommentData = await Comment.findOne({
-      where:{id: req.params.id},
+      where: { id: req.params.id },
     });
     if (!CommentData) {
       res.status(404).json({ message: 'No comment found with this id!' });
@@ -42,9 +42,9 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id', async (req, res)=>{
+router.put('/:id', async (req, res) => {
   try {
-    const CommentData = await Comment.update(req.body,{
+    const CommentData = await Comment.update(req.body, {
       where: {
         id: req.params.id,
       }

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
-const session = require ('express-session')
+const session = require('express-session')
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 
@@ -20,8 +20,8 @@ router.get('/:id', async (req, res) => {
   try {
     const userData = await User.findOne({
       attributes: { exclude: ['password'] },
-      where: {id: req.params.id},
-      include:[
+      where: { id: req.params.id },
+      include: [
         {
           model: Post,
           attributes: ['id', 'title', 'post_text']
