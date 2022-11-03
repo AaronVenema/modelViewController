@@ -18,7 +18,7 @@ const sess = {
     db: sequelize
   })
 };
-const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create({helpers});
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

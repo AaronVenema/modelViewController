@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/api/posts/:id', async (req, res) => {
+router.get('/posts/:id', async (req, res) => {
   try {
     const PostData = await Post.findOne({
       where: {id: req.params.id},
@@ -58,8 +58,8 @@ router.get('/api/posts/:id', async (req, res) => {
 router.get('/dashboard', async (req, res) => {
  try{ 
     const userData = await User.findOne({
-      attributes: { exclude: ['password'] },
-      where: {id: req.params.id},
+      // attributes: { exclude: ['password'] },
+      where: {id: req.session.user_id},
       include:[
         {
           model: Post,
@@ -76,6 +76,7 @@ router.get('/dashboard', async (req, res) => {
       ]
     });
       const user =userData.get({ plain: true });
+      console.log(user)
       res.render('dashboard', {
         ...user,
         logged_in: true
