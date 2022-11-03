@@ -1,18 +1,18 @@
-<div class="row">
-  <div class="col-auto">
+<div class="container-fluid">
+  <div class="col-left">
     <h2>Welcome, {{name}}!</h2>
   </div>
 </div>
-<div class="row mt-4">
-  <div class="col-md-6">
+<div class="container-left mt-4">
+  <div class="card bg-dark" >
     <h3>Create a New Post:</h3>
     <form class="form new-post-form">
-      <div class="form-group">
-        <label for="post_title">post title:</label>
+      <div class="form-group form-control-sm">
+        <label for="post_title">Title:</label>
         <input class="form-input" type="text" id="post_title" name="post_title" />
       </div>
       <div class="form-group">
-        <label for="post_text">description:</label>
+        <label for="post_text">Post:</label>
         <textarea class="form-input" id="post_text" name="post_text"></textarea>
       </div>
       <div class="form-group">
@@ -25,7 +25,7 @@
     {{#each posts as |post|}}
     <div class="row mb-2">
       <div class="col-md-8">
-        <h4><a href="/posts/{{post.id}}">{{post.title}}</a></h4>
+        <h4><a href="api/posts/{{post.id}}">{{post.title}}</a></h4>
       </div>
       <div class="col-md-4">
         <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
@@ -34,4 +34,4 @@
     {{/each}}
   </div>
 </div>
-<script src="./js/dashboard.js"></script>
+<script src="/js/dashboard.js"></script>
